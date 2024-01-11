@@ -1,7 +1,7 @@
 export interface AuthResponse{
 
   id:string;
-  nome:string;
+  name:string;
   email:string;
   token:string;
 }
