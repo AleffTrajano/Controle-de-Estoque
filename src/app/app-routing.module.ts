@@ -6,24 +6,24 @@ import { DashboardHomeComponent } from './models/dashboard/page/dashboard-home/d
 import { AuthGuard } from './guards/auth-guard.service';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'HomeComponent',
-    pathMatch: 'full',
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-  },
-  {
-    path: 'dashboard',
-    loadChildren: () =>
-      import('./models/dashboard/dashboard.module').then(
-        (m) => m.DashboardModule
-      ),
-    canActivate: [AuthGuard]
-  },
-];
+
+    {
+      path: '',
+      redirectTo: 'dashboard',
+      pathMatch: 'full',
+    },
+    {
+      path: 'home',
+      component: HomeComponent,
+    },
+    {
+      path: 'dashboard',
+      loadChildren: () => import('./models/dashboard/dashboard.module').then(
+          (m) => m.DashboardModule
+        ),
+        canActivate:[AuthGuard]
+    },
+  ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
