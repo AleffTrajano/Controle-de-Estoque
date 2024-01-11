@@ -1,15 +1,27 @@
+import { DashboardModule } from './models/dashboard/dashboard.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home.component';
+import { DashboardHomeComponent } from './models/dashboard/page/dashboard-home/dashboard-home.component';
 
 const routes: Routes = [
 
-  {
-    path:'',
-    component:HomeComponent,
-  }
-];
-
+    {
+      path: '',
+      redirectTo: 'dashboard',
+      pathMatch: 'full',
+    },
+    {
+      path: 'home',
+      component: HomeComponent,
+    },
+    {
+      path: 'dashboard',
+      loadChildren: () => import('./models/dashboard/dashboard.module').then(
+          (m) => m.DashboardModule
+        ),
+    },
+  ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
